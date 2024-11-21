@@ -1,9 +1,11 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
@@ -33,6 +35,17 @@ public class Principal {
 			DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
 			temporadas.add(dadosTemporada);			
 		}
+		temporadas.forEach(System.out::println);
+		
+		/* Mateus Victorio, 20241121, Code below commented because it was replaced by the next line with lambda expression
+		 * for (int i = 0; i < dados.TotalTemporadas(); i++) {
+			List<DadosEpisodio> episodiosTemporada = temporadas.get(i).episodios();
+			for (int j = 0; j < episodiosTemporada.size(); j++) {
+				System.out.println(episodiosTemporada.get(j).titulo());
+			}
+		}*/
+		
+		temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
 		temporadas.forEach(System.out::println);
 		
 	}
