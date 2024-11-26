@@ -1,6 +1,7 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +47,22 @@ public class Principal {
 		}*/
 		
 		temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
-		temporadas.forEach(System.out::println);
+		//temporadas.forEach(System.out::println);
 		
+		List<String> nomes = Arrays.asList("Jacque","Iasmin","Paulo","Rogrigo","Nico");
+		
+		//The "Stream" statement allow to use a lot of others functions.
+		//In the example below the follow code only order the list and print it.
+		nomes.stream().sorted().forEach(System.out::println);
+		
+		//In this example, it is ordering and showing the first three items of list.
+		nomes.stream().sorted().limit(3).forEach(System.out::println);
+		
+		nomes.stream() //"Stream" to use others functions
+			 .sorted() //"sorted" to order the list
+			 .limit(3) //"limit" to show only three values 
+			 .filter(n -> n.startsWith("N")) //"filter" to do any logic in the lambda expression, in this case to show only names starts with "N"
+			 .map(n -> n.toUpperCase()) //"map" to change the value
+			 .forEach(System.out::println); //"forEach" to execute the print to each item on the list.
 	}
 }
